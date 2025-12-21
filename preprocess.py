@@ -6,7 +6,7 @@ def calculate_distance(df, center_coords):
     df_radiands = np.radians(df[['latitude', 'longitude']])
     center_radiands = np.radians([center_coords])
     distance_matrix = haversine_distances(df_radiands, center_radiands)
-    return distance_matrix.flatten() * 6371 
+    return (distance_matrix.flatten() * 6371).round(2) # Convert to KM, multiply by Earth's radius
 
 cph = pd.read_csv('copenhagen_listings.csv')
 cph_center = [55.6761, 12.5683] #Radhuspladsen
